@@ -48,9 +48,9 @@ foreach (target cppzmq cppzmq-static)
   target_include_directories(${target} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                                                  $<INSTALL_INTERFACE:include>)
   if(MSVC)
-    target_compile_options(${target} PRIVATE /W4 /WX)
+    target_compile_options(${target} INTERFACE /W4 /WX)
   else()
-    target_compile_options(${target} PRIVATE -Wall -Wextra -pedantic -Werror)
+    target_compile_options(${target} INTERFACE -Wall -Wextra -pedantic -Werror)
   endif()
 endforeach()
 
