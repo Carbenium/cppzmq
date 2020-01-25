@@ -47,6 +47,11 @@ foreach (target cppzmq cppzmq-static)
   add_library(${target} INTERFACE)
   target_include_directories(${target} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                                                  $<INSTALL_INTERFACE:include>)
+  if(MSVC)
+    target_compile_options(${target} PRIVATE /W4 /WX)
+  else()
+    target_compile_options(${target} PRIVATE -Wall -Wextra -pedantic -Werror)
+  endif()
 endforeach()
 
 target_link_libraries(cppzmq INTERFACE libzmq)
